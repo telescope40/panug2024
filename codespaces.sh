@@ -9,3 +9,4 @@ sudo apt remove moby-tini
 python3 -m pip install networklab
 netlab install -y ubuntu ansible containerlab
 apt install graphviz
+had to fix ansible in codespace export ANSIBLE_CONFIG=./ansible.cfg
