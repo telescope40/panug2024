@@ -12,6 +12,4 @@ virtualenv $CWD
 echo 'source ./bin/activate' >> ~/.bashrc
 # Activate the python virtual environment
 source ./bin/activate
-
-
 # Create DockerFile

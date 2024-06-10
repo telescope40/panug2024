@@ -43,7 +43,7 @@ nodes:
   remote_host2:
     device: linux
     id: 8
-
+-
 
 links:
 - r1-r2
@@ -99,3 +99,16 @@ validate:
     exec: ping -c 5 -W 1 -A h3
     valid: |
       "64 bytes" in stdout
+
+validate:
+  adj:
+    description: Check for OSPF adjacencies
+    nodes: [ r1, r2 ]
+    plugin: ospf_neighbor(nodes.r1.ospf.router_id)
+
+  prefix:
+    description: Check whether LABSW1 advertises the beacon prefix
+    wait: 20
+    wait_msg: Wait for BGP prefix origination and BGP convergence
+    nodes: [ isp1, isp2]
+    plugin: bgp_prefix('172.20.0.0/24')
