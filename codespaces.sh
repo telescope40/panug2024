@@ -9,3 +9,5 @@ sudo apt remove moby-tini
 python3 -m pip install networklab
 netlab install -y ubuntu ansible containerlab
 apt install graphviz
+export ANSIBLE_CONFIG=netlab/project1/ansible.cfg
+cp netlab/project1/tests/frr.py /usr/local/lib/python3.8/dist-packages/netsim/validate/bgp/frr.py
