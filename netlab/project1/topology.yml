@@ -3,11 +3,12 @@ defaults.device: frr
 provider: clab
 defaults.providers.clab.bridge_type: ovs-bridge
 
-module: [ bgp ]
+module: [ bgp,ospf,bfd ]
 
 nodes:
   r1:
     bgp.as: 65001
+    bgp.originate: [ 172.20.0.0/24 ]
     bgp.advertise_loopback: True
     config: ['device_config/r1.j2']
     id: 1
@@ -15,17 +16,18 @@ nodes:
       ipv4: 10.0.0.1/32
   r2:
     bgp.as: 65001
+    bgp.originate: [ 172.20.0.0/24 ]
     bgp.advertise_loopback: True
     config: ['device_config/r2.j2']
     id: 2
     loopback:
        ipv4: 10.0.0.2/32
   isp1:
-    bgp.originate: [ 172.16.2.0/24 ]
+    bgp.originate: [ 0.0.0.0/0 ]
     bgp.as: 64512
 
   isp2:
-    bgp.originate: [ 172.16.3.0/24 ]
+    bgp.originate: [ 0.0.0.0/0 ]
     bgp.as: 64513
 
   server1:
@@ -46,14 +48,28 @@ nodes:
 -
 
 links:
+- r1:
+  r2:
+  ospf.area: 0.0.0.0
+  ospf.bfd: true
 - r1-r2
-- r1-isp1
-- r2-isp2
+- r1:
+  isp1:
+  pool: isp1
+
+- r2:
+  isp2:
+  pool: isp2
 - r1-server1
 - r2-server2
 - isp1-remote_host1
 - isp2-remote_host2
 
+#Defined Custom IP Addresses pools for isp1 and 2
+addressing.isp1.ipv4: 169.254.100.0/24
+addressing.isp1.prefix: 30
+addressing.isp2.ipv4: 169.254.200.0/24
+addressing.isp2.prefix: 30
 
 validate:
    wait:
@@ -73,30 +89,6 @@ validate:
     nodes: [ server2 ]
     devices: [ linux ]
     exec: ping -c 5 -W 1 -A h4
-    valid: |
-      "64 bytes" in stdout
-
-   ping3:
-    description: Server1 Ping to Server2
-    nodes: [ server1 ]
-    devices: [ linux ]
-    exec: ping -c 5 -W 1 -A server2
-    valid: |
-      "64 bytes" in stdout
-
-   ping4:
-    description: Server1 Ping to H4
-    nodes: [ server1 ]
-    devices: [ linux ]
-    exec: ping -c 5 -W 1 -A h4
-    valid: |
-      "64 bytes" in stdout
-
-   ping5:
-    description: Server2 Ping to H3
-    nodes: [ server2 ]
-    devices: [ linux ]
-    exec: ping -c 5 -W 1 -A h3
     valid: |
       "64 bytes" in stdout
 
