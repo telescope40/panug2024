@@ -33,4 +33,9 @@ jobs:
           make install
       - name: deploy
         run: make deploy
+      - name: Run Netlab
+        run: |
+          cd ${{ github.workspace }}
+          chmod +x codespaces.sh
+          ./codespaces.sh
 
