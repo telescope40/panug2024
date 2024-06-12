@@ -45,7 +45,7 @@ nodes:
   remote_host2:
     device: linux
     id: 8
--
+
 
 links:
 - r1:
@@ -99,7 +99,7 @@ validate:
     plugin: ospf_neighbor(nodes.r1.ospf.router_id)
 
   prefix:
-    description: Check whether LABSW1 advertises the beacon prefix
+    description: Check whether r1 & r2 advertises the beacon prefix
     wait: 20
     wait_msg: Wait for BGP prefix origination and BGP convergence
     nodes: [ isp1, isp2]
