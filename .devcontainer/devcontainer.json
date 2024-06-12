@@ -14,7 +14,7 @@
   ],
   "forwardPorts": [3000, 8000],
   "postCreateCommand": "bash .devcontainer/setup.sh && pyenv install 3.11.4 && pyenv global 3.11.4 && python -m venv panug && . panug/bin/activate && pip install -r requirements.txt",
-  "remoteUser": "codespace",
+  "remoteUser": "vscode",
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:1": {
       "version": "latest"
