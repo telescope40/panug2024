@@ -1,7 +1,9 @@
 install:
-	pip install -r requirements.txt
+	pip install --upgrade pip &&\
+		pip install -r requirements.txt
 
 test:
+
 
 format:
 	black *.py
@@ -12,3 +14,4 @@ lint:
 refactor: format lint
 
 deploy:
+

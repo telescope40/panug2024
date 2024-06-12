@@ -1,0 +1,107 @@
+defaults.device: frr
+
+provider: clab
+defaults.providers.clab.bridge_type: ovs-bridge
+
+module: [ bgp,ospf,bfd ]
+
+nodes:
+  r1:
+    bgp.as: 65001
+    bgp.originate: [ 172.20.0.0/24 ]
+    bgp.advertise_loopback: True
+    config: ['device_config/r1.j2']
+    id: 1
+    loopback:
+      ipv4: 10.0.0.1/32
+  r2:
+    bgp.as: 65001
+    bgp.originate: [ 172.20.0.0/24 ]
+    bgp.advertise_loopback: True
+    config: ['device_config/r2.j2']
+    id: 2
+    loopback:
+       ipv4: 10.0.0.2/32
+  isp1:
+    bgp.originate: [ 0.0.0.0/0 ]
+    bgp.as: 64512
+
+  isp2:
+    bgp.originate: [ 0.0.0.0/0 ]
+    bgp.as: 64513
+
+  server1:
+    device: linux
+    id: 5
+
+  server2:
+    device: linux
+    id: 6
+
+  remote_host1:
+    device: linux
+    id: 7
+
+  remote_host2:
+    device: linux
+    id: 8
+
+
+links:
+- r1:
+  r2:
+  ospf.area: 0.0.0.0
+  ospf.bfd: true
+- r1-r2
+- r1:
+  isp1:
+  pool: isp1
+
+- r2:
+  isp2:
+  pool: isp2
+- r1-server1
+- r2-server2
+- isp1-remote_host1
+- isp2-remote_host2
+
+#Defined Custom IP Addresses pools for isp1 and 2
+addressing.isp1.ipv4: 169.254.100.0/24
+addressing.isp1.prefix: 30
+addressing.isp2.ipv4: 169.254.200.0/24
+addressing.isp2.prefix: 30
+
+validate:
+   wait:
+    description: Waiting for BGP to stabilize
+    wait: 45
+
+   ping1:
+    description: Server1 Ping to H3
+    nodes: [ server1 ]
+    devices: [ linux ]
+    exec: ping -c 5 -W 1 -A h3
+    valid: |
+      "64 bytes" in stdout
+
+   ping2:
+    description: Server2 Ping to H4
+    nodes: [ server2 ]
+    devices: [ linux ]
+    exec: ping -c 5 -W 1 -A h4
+    valid: |
+      "64 bytes" in stdout
+
+validate:
+  adj:
+    description: Check for OSPF adjacencies
+    wait: 20
+    nodes: [ r1, r2 ]
+    plugin: ospf_neighbor(nodes.r1.ospf.router_id)
+
+  prefix:
+    description: Check whether r1 & r2 advertises the beacon prefix
+    wait: 20
+    wait_msg: Wait for BGP prefix origination and BGP convergence
+    nodes: [ isp1, isp2]
+    plugin: bgp_prefix('172.20.0.0/24')

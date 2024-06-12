@@ -1,0 +1,40 @@
+name: CI
+on:
+  push:
+    branches: [ main , dev_1 ]
+  pull_request:
+    branches: [ main, dev_1 ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  build:
+    name: Run Ansible on Ubuntu
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '14'
+      - name: checkout-panug
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      - name: install packages
+        run: |
+          cd ${{ github.workspace }}
+          chmod +x setup.sh
+          ./setup.sh
+          make install
+
+      - name: Run Netlab
+        run: |
+          cd ${{ github.workspace }}
+          chmod +x codespaces.sh
+          ./codespaces.sh
+
