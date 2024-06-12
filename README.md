@@ -1,5 +1,9 @@
 # PANUG 
-Project is used to demonstrate how to use NetDevOps for everyday Network Engineers 
+Project is used to demonstrate how to use NetDevOps for everyday Network Engineers
+
+[![CI](https://github.com/telescope40/panug2024/actions/workflows/ci.yml/badge.svg)](https://github.com/telescope40/panug2024/actions/workflows/ci.yml)
+
+[![Codespaces Prebuilds](https://github.com/telescope40/panug2024/actions/workflows/codespaces/create_codespaces_prebuilds/badge.svg)](https://github.com/telescope40/panug2024/actions/workflows/codespaces/create_codespaces_prebuilds)
 
 ### Getting Started 
 We want to build test and develop with Net DevOps , Infrastructure as code so lets start with the basic components 
