@@ -16,8 +16,8 @@ lint:
 refactor: format lint
 
 deploy:
-    #virtualenv netlab/project1
+    virtualenv netlab/project1
 	# Activate the python virtual environment
-	# source netlab/project1/./bin/activate
+	source netlab/project1/./bin/activate
 	netlab install -y ubuntu ansible containerlab
 	#apt install -y graphviz

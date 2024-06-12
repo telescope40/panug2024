@@ -6,6 +6,14 @@ sudo apt-get update && sudo apt-get install -y python3-pip
 CWD=$(pwd)
 #Create the Python Virtual Environment
 # Create Directories for the project
+#Copy Test Directories over
+mkdir  /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/bgp/
+mkdir  /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/ospf/
+mkdir  /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/isis/
+#      /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/frr.py
+cp netlab/project1/tests/bgp/frr.py /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/bgp/frr.py
+cp netlab/project1/tests/ospf/frr.py /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/ospf/frr.py
+cp netlab/project1/tests/isis/frr.py /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/isis/frr.py
 #mkdir -p netlab netlab/project1 .devcontainer
 # Phase 2 Install Netlab
 echo "deb [trusted=yes] https://apt.fury.io/netdevops/ /" | \
