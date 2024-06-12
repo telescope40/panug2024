@@ -16,6 +16,10 @@ lint:
 refactor: format lint
 
 deploy:
+    virtualenv netlab/project1
+    echo 'source netlab/project1/./bin/activate' >> ~/.bashrc
+	# Activate the python virtual environment
+	source netlab/project1/./bin/activate
 	netlab install -y ubuntu ansible containerlab
 	apt install -y graphviz
 	export ANSIBLE_CONFIG=ansible.cfg
@@ -25,7 +29,7 @@ deploy:
 	cp netlab/project1/tests/bgp/frr.py /usr/local/python/3.10.13/lib/python3.10/site-packages/netsim/validate/bgp/frr.py
 	cp netlab/project1/tests/ospf/frr.py /usr/local/python/3.10.13/lib/python3.10/site-packages/netsim/validate/ospf/frr.py
 	cp netlab/project1/tests/isis/frr.py /usr/local/python/3.10.13/lib/python3.10/site-packages/netsim/validate/isis/frr.py
-    cd netlab/project1
+    os.chdir('netlab/project1')
     netlab up
-    sleep 2m
+    time.sleep(120)
     netlab validate
