@@ -16,4 +16,4 @@ lint:
 refactor: format lint
 
 deploy:
-
+	python3.9 -m venv

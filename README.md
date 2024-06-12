@@ -34,6 +34,15 @@ Now we want to track any development changes on the remote so when we do develop
 ### Git 
     - Tool that helps development state 
 
+### Github Actions 
+    - Our CI/CD "pipeline" is via Github Actions 
+    - the CI Action will create a build of netlab based on the topology and device configuration templates 
+    - It will also run the execution of the validation test to confirm the end result meets our design goals 
+    - Mainly for BGP 
+
+    - Github actions will also in parrelle run a Codespace PreBuild Deployment. This environment is meant to be used for testing 
+    in the event of failure of CI , it can also be used for a remote LAB environment to experiment with our builds. 
+
 ### Python 
 
-vi /usr/local/lib/python3.8/dist-packages/netsim/validate/bgp/frr.py
+
