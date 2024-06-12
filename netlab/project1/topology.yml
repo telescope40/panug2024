@@ -95,6 +95,7 @@ validate:
 validate:
   adj:
     description: Check for OSPF adjacencies
+    wait: 20
     nodes: [ r1, r2 ]
     plugin: ospf_neighbor(nodes.r1.ospf.router_id)
 
