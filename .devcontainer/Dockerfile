@@ -10,10 +10,11 @@ RUN apt-get update && apt-get -y install --no-install-recommends \
    python3.9-venv \
 
 
-ARG USER="codespace"
-ARG VENV_PATH="/panug/venv"
-COPY requirements.txt /tmp/
-COPY Makefile /tmp/
-RUN su $USER -c "/usr/bin/python3 -m venv /panug/venv" \
-   && su $USER -c "${VENV_PATH}/bin/pip --disable-pip-version-check --no-cache-dir install -r /tmp/requirements.txt" \
-   && rm -rf /tmp/requirements.txt
+#ARG USER="codespace"
+#ARG VENV_PATH="/panug/venv"
+#COPY requirements.txt /tmp/
+#COPY Makefile /tmp/
+#RUN su $USER -c "/usr/bin/python3 -m venv /panug/venv" \
+#   && su $USER -c "${VENV_PATH}/bin/pip --disable-pip-version-check --no-cache-dir install -r /tmp/requirements.txt" \
+#   && rm -rf /tmp/requirements.txt
+RUN chmod +x setup.sh \ && ./setup.sh \ &&  chmod +x codespaces.sh && \ ./codespaces.sh
