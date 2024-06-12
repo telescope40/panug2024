@@ -6,8 +6,7 @@ FROM ubuntu:20.04
 # [Optional] Uncomment this section to install additional OS packages.
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 #     && apt-get -y install --no-install-recommends <your-package-list-here>
-RUN apt-get update && apt-get -y install --no-install-recommends \
-   python3.9-venv \
+RUN apt-get update && apt-get -y install --no-install-recommends
 
 
 #ARG USER="codespace"
@@ -17,4 +16,9 @@ RUN apt-get update && apt-get -y install --no-install-recommends \
 #RUN su $USER -c "/usr/bin/python3 -m venv /panug/venv" \
 #   && su $USER -c "${VENV_PATH}/bin/pip --disable-pip-version-check --no-cache-dir install -r /tmp/requirements.txt" \
 #   && rm -rf /tmp/requirements.txt
-RUN chmod +x setup.sh \ && ./setup.sh \ &&  chmod +x codespaces.sh && \ ./codespaces.sh
+ARG HOMEPATH="panug"
+RUN cd HOMEPATH
+RUN chmod +x setup.sh
+RUN ./setup.sh
+RUN chmod +x codespaces.sh
+RUN ./codespaces.sh
