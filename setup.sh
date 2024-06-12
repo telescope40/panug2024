@@ -22,6 +22,4 @@ sudo apt update && sudo apt install containerlab -y
 sudo apt-get install containerd -y
 sudo apt remove moby-tini -y
 
-virtualenv netlab/project1
-source netlab/project1/./bin/activate
-netlab install -y ubuntu ansible containerlab
+
