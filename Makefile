@@ -18,10 +18,9 @@ refactor: format lint
 deploy:
     #virtualenv netlab/project1
 	# Activate the python virtual environment
-	source netlab/project1/./bin/activate
+	# source netlab/project1/./bin/activate
 	netlab install -y ubuntu ansible containerlab
 	apt install -y graphviz
-	export ANSIBLE_CONFIG=ansible.cfg
 	mkdir  /usr/local/python/3.10.13/lib/python3.10/site-packages/netsim/validate/bgp/
 	mkdir  /usr/local/python/3.10.13/lib/python3.10/site-packages/netsim/validate/ospf/
 	mkdir  /usr/local/python/3.10.13/lib/python3.10/site-packages/netsim/validate/isis/
