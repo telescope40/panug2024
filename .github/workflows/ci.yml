@@ -31,8 +31,7 @@ jobs:
           chmod +x setup.sh
           ./setup.sh
           make install
-      - name: deploy
-        run: make deploy
+
       - name: Run Netlab
         run: |
           cd ${{ github.workspace }}
