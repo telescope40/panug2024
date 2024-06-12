@@ -20,7 +20,7 @@ deploy:
 	# Activate the python virtual environment
 	# source netlab/project1/./bin/activate
 	netlab install -y ubuntu ansible containerlab
-	apt install -y graphviz
+	#apt install -y graphviz
 	mkdir  /usr/local/python/3.10.13/lib/python3.10/site-packages/netsim/validate/bgp/
 	mkdir  /usr/local/python/3.10.13/lib/python3.10/site-packages/netsim/validate/ospf/
 	mkdir  /usr/local/python/3.10.13/lib/python3.10/site-packages/netsim/validate/isis/
