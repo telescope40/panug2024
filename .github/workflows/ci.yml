@@ -29,7 +29,6 @@ jobs:
         run: |
           cd ${{ github.workspace }}
           bash ./setup.sh
-          make install
 
       - name: Run Netlab
         run: |
