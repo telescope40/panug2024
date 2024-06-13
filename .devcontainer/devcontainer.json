@@ -1,6 +1,6 @@
 {
-  "name": "Ubuntu 22.04 Development Environment",
-  "image": "mcr.microsoft.com/vscode/devcontainers/base:ubuntu-22.04",
+  "name": "Ubuntu 20.04 Development Environment",
+  "image": "mcr.microsoft.com/vscode/devcontainers/base:ubuntu-20.04",
   "settings": {
     "terminal.integrated.shell.linux": "/bin/bash",
     "editor.formatOnSave": true,
@@ -13,7 +13,7 @@
     "dbaeumer.vscode-eslint"
   ],
   "forwardPorts": [3000, 8000],
-  "postCreateCommand": "bash .devcontainer/setup.sh && pyenv install 3.9.6 && pyenv global 3.9.6 && python -m venv panug && .panug/bin/activate && pip install -r requirements.txt",
+  "postCreateCommand": "bash .devcontainer/setup.sh && pyenv install 3.9 && pyenv global 3.9 && python -m venv panug && .panug/bin/activate && pip install -r requirements.txt",
   "remoteUser": "vscode",
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:1": {
