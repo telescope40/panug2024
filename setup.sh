@@ -20,10 +20,10 @@ CWD=$(pwd)
 ##mkdir -p netlab netlab/project1 .devcontainer
 # Phase 2 Install Netlab
 echo "deb [trusted=yes] https://apt.fury.io/netdevops/ /" &&\
-su tee -a /etc/apt/sources.list.d/netdevops.list -y &&\
-su apt update && sudo apt install containerlab -y &&\
-su apt-get install containerd -y &&\
-su apt remove moby-tini -y
+sudo tee -a /etc/apt/sources.list.d/netdevops.list -y &&\
+sudo apt update && sudo apt install containerlab -y &&\
+sudo apt-get install containerd -y &&\
+sudo apt remove moby-tini -y
 make install
 make deploy
 
