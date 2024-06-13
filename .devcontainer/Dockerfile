@@ -6,7 +6,8 @@ FROM ubuntu:20.04
 # [Optional] Uncomment this section to install additional OS packages.
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 #     && apt-get -y install --no-install-recommends <your-package-list-here>
-RUN apt-get update && apt-get -y install --no-install-recommends
+RUN apt-get update && apt-get -y install --no-install-recommends &&  apt-get install -y build-essential libssl-dev libffi-dev python3-dev
+
 
 
 ARG USER="root"

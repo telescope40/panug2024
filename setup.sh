@@ -24,6 +24,7 @@ sudo tee -a /etc/apt/sources.list.d/netdevops.list -y
 sudo apt install containerlab -y
 sudo apt-get install containerd -y
 sudo apt remove moby-tini -y
+pip install --upgrade pip setuptools wheel
 make install
 pyenv install 3.9.7
 pyenv global 3.9.7
