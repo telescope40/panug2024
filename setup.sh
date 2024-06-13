@@ -25,10 +25,11 @@ sudo apt install containerlab -y
 sudo apt-get install containerd -y
 sudo apt remove moby-tini -y
 make install
-pyenv install 3.9.7 &&\
-pyenv global 3.9.7 &&\
-python3.9 -m venv panug &&\
+pyenv install 3.9.7
+pyenv global 3.9.7
+python3.9 -m venv panug
 source venv/bin/activate
+make install
 cd netlab/project1
 netlab install -y ubuntu ansible containerlab
 export ANSIBLE_CONFIG=ansible.cfg
