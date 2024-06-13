@@ -28,13 +28,11 @@ jobs:
       - name: install packages
         run: |
           cd ${{ github.workspace }}
-          chmod +x setup.sh
-          ./setup.sh
+          bash ./setup.sh
           make install
 
       - name: Run Netlab
         run: |
           cd ${{ github.workspace }}
-          chmod +x codespaces.sh
-          ./codespaces.sh
+          bash ./codespaces.sh
 
