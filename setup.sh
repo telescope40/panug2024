@@ -19,6 +19,12 @@ CWD=$(pwd)
 #cp netlab/project1/tests/isis/frr.py /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/isis/frr.py
 ##mkdir -p netlab netlab/project1 .devcontainer
 # Phase 2 Install Netlab
-
+echo "deb [trusted=yes] https://apt.fury.io/netdevops/ /" &&\
+su tee -a /etc/apt/sources.list.d/netdevops.list -y &&\
+su apt update && sudo apt install containerlab -y &&\
+su apt-get install containerd -y &&\
+su apt remove moby-tini -y
+make install
+make deploy
 
 
