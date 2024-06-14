@@ -12,14 +12,16 @@
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint"
   ],
-  "forwardPorts": [3000, 8000],
   "postCreateCommand": [
      "bash panug/setup.sh"
   ],
-  "remoteUser": "vscode",
+  "remoteUser": "telescope40",
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:1": {
       "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.9"
     },
     "ghcr.io/devcontainers/features/node:1": {
       "version": "lts"

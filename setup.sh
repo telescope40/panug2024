@@ -19,7 +19,7 @@ cd netlab/project1
 netlab install -y ubuntu ansible containerlab
 export ANSIBLE_CONFIG=ansible.cfg
 
-cp -R tests/ ~/.netlab/validate
+cp -R tests/. ~/.netlab/validate
 PATH=$(find ../../.. -wholename */netsim/validate)
 dirbgp="${PATH}/bgp/"
 dirospf="${PATH}/ospf/"
@@ -36,3 +36,7 @@ cp netlab/project1/tests/isis/frr.py $dirisis
 netlab up
 sleep 20s
 netlab validate
+
+
+
+git remote add netlab git@github.com:ipspace/netlab.git
