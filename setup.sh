@@ -3,21 +3,19 @@
 # pip is used to install all my python libraries
 sudo apt-get update && sudo apt-get install -y python3-pip
 # Get current working directory
-CWD=$(pwd)
+
+PATH=$(find ../../.. -wholename */netsim/validate)
+dirbgp="${PATH}/bgp/"
+dirospf="${PATH}/ospf/"
+dirlinux="${PATH}/linux/"
+dirisis="${PATH}/isis/"
 #Create the Python Virtual Environment
 # Create Directories for the project
 #Copy Test Directories over
-#mkdir  /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/bgp/
-#mkdir  /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/ospf/
-#mkdir  /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/isis/
-#mkdir  /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/linux/
-##      /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/frr.py
-#cp netlab/project1/tests/frr.py /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/frr.py
-#cp netlab/project1/tests/linux/frr.py /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/linux/frr.py
-#cp netlab/project1/tests/bgp/frr.py /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/bgp/frr.py
-#cp netlab/project1/tests/ospf/frr.py /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/ospf/frr.py
-#cp netlab/project1/tests/isis/frr.py /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/isis/frr.py
-##mkdir -p netlab netlab/project1 .devcontainer
+cp netlab/project1/tests/linux/frr.py $dirlinux
+cp netlab/project1/tests/bgp/frr.py $dirbgp
+cp netlab/project1/tests/ospf/frr.py $dirospf
+cp netlab/project1/tests/isis/frr.py $dirisis
 # Phase 2 Install Netlab
 echo "deb [trusted=yes] https://apt.fury.io/netdevops/ /" |\
 sudo tee -a /etc/apt/sources.list.d/netdevops.list -y

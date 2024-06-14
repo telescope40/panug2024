@@ -17,7 +17,7 @@ that will build out environment with the tools we need.
     - requirements.txt holds all the python packages we will need 
     - Dockerfile is used to create our codespace Virtual Machine
     - Makefile is used to lint , check our code 
-    ```sudo ./setup.sh```
+    ```bash ./setup.sh```
 
 ### Build out lab
     - Now that we have our basic files , we want to create a development branch to operate out of 
