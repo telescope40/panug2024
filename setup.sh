@@ -18,6 +18,8 @@ make install
 cd netlab/project1
 netlab install -y ubuntu ansible containerlab
 export ANSIBLE_CONFIG=ansible.cfg
+
+cp -R tests/ ~/.netlab/validate
 PATH=$(find ../../.. -wholename */netsim/validate)
 dirbgp="${PATH}/bgp/"
 dirospf="${PATH}/ospf/"
