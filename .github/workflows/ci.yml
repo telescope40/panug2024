@@ -30,8 +30,4 @@ jobs:
           cd ${{ github.workspace }}
           bash ./setup.sh
 
-      - name: Run Netlab
-        run: |
-          cd ${{ github.workspace }}
-          bash ./codespaces.sh
 

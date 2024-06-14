@@ -20,10 +20,5 @@ RUN su echo "deb [trusted=yes] https://apt.fury.io/netdevops/ /" | \
     && su apt-get install containerd -y \
     && su apt remove moby-tini -y \
 
-RUN su $USER -c "/usr/bin/python3 -m venv /panug/venv" \
-   && su $USER -c "${VENV_PATH}/bin/pip --disable-pip-version-check --no-cache-dir install -r /tmp/requirements.txt" \
-   && rm -rf /tmp/requirements.txt
-#ARG HOMEPATH="panug"
+RUN su bash panug/setup.sh
 
-RUN su chmod +x codespaces.sh
-RUN su ./codespaces.sh
