@@ -26,6 +26,7 @@ dirisis="${PATH}/isis/"
 #Create the Python Virtual Environment
 # Create Directories for the project
 #Copy Test Directories over
+mkdir $dirlinux && mkdir $dirisis && mkdir $dirbgp && mkdir %dirospf
 cp netlab/project1/tests/linux/frr.py $dirlinux
 cp netlab/project1/tests/bgp/frr.py $dirbgp
 cp netlab/project1/tests/ospf/frr.py $dirospf
