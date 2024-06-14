@@ -4,18 +4,7 @@
 sudo apt-get update && sudo apt-get install -y python3-pip
 # Get current working directory
 
-PATH=$(find ../../.. -wholename */netsim/validate)
-dirbgp="${PATH}/bgp/"
-dirospf="${PATH}/ospf/"
-dirlinux="${PATH}/linux/"
-dirisis="${PATH}/isis/"
-#Create the Python Virtual Environment
-# Create Directories for the project
-#Copy Test Directories over
-cp netlab/project1/tests/linux/frr.py $dirlinux
-cp netlab/project1/tests/bgp/frr.py $dirbgp
-cp netlab/project1/tests/ospf/frr.py $dirospf
-cp netlab/project1/tests/isis/frr.py $dirisis
+
 # Phase 2 Install Netlab
 echo "deb [trusted=yes] https://apt.fury.io/netdevops/ /" |\
 sudo tee -a /etc/apt/sources.list.d/netdevops.list -y
@@ -29,6 +18,18 @@ make install
 cd netlab/project1
 netlab install -y ubuntu ansible containerlab
 export ANSIBLE_CONFIG=ansible.cfg
+PATH=$(find ../../.. -wholename */netsim/validate)
+dirbgp="${PATH}/bgp/"
+dirospf="${PATH}/ospf/"
+dirlinux="${PATH}/linux/"
+dirisis="${PATH}/isis/"
+#Create the Python Virtual Environment
+# Create Directories for the project
+#Copy Test Directories over
+cp netlab/project1/tests/linux/frr.py $dirlinux
+cp netlab/project1/tests/bgp/frr.py $dirbgp
+cp netlab/project1/tests/ospf/frr.py $dirospf
+cp netlab/project1/tests/isis/frr.py $dirisis
 netlab up
 sleep 20s
 netlab validate
