@@ -15,7 +15,7 @@
   "postCreateCommand": [
      "bash panug/setup.sh"
   ],
-  "remoteUser": "telescope40",
+  "remoteUser": "telescope",
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:1": {
       "version": "latest"
