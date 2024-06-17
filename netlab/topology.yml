@@ -3,7 +3,7 @@ defaults.device: frr
 provider: clab
 defaults.providers.clab.bridge_type: ovs-bridge
 
-module: [ bgp,ospf,bfd ]
+module: [ bgp,ospf]
 
 nodes:
   r1:

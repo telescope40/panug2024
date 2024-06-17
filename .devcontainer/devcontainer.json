@@ -1,6 +1,6 @@
 {
-  "name": "Ubuntu 20.04 Development Environment",
-  "image": "mcr.microsoft.com/vscode/devcontainers/base:ubuntu-20.04",
+  "name": "Ubuntu 22.04 Development Environment",
+  "image": "mcr.microsoft.com/vscode/devcontainers/base:ubuntu-22.04",
   "settings": {
     "terminal.integrated.shell.linux": "/bin/bash",
     "editor.formatOnSave": true,
