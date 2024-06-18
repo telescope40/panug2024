@@ -29,16 +29,19 @@ jobs:
         run: |
           cd ${{ github.workspace }}
           bash ./setup.sh
+      - name: netlab up
+        run: |
+          cd ${{ github.workspace }}/netlab
+          export ANSIBLE_CONFIG=ansible.cfg
+          netlab up
       - name: netlab testing
         run: |
-          cd ${{ github.workspace }}
-          cd netlab
+          cd ${{ github.workspace }}/netlab
           netlab show defaults paths.validate --evaluate-paths
           netlab validate
       - name: netlab collect configuration
         run: |
-          cd ${{ github.workspace }}
-          cd netlab
+          cd ${{ github.workspace }}/netlab
           netlab collect
 
       - name: Upload Build Artifact
