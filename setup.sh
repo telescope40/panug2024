@@ -23,9 +23,9 @@ cp netlab/validate/route/frr.py /home/runner/work/panug2024/panug2024/netlab/val
 netlab install -y ubuntu ansible containerlab
 #Create the Python Virtual Environment
 # Create Directories for the project
-#cd netlab
-#export ANSIBLE_CONFIG=ansible.cfg
-#netlab up
-#sleep 20s
+cd netlab
+export ANSIBLE_CONFIG=ansible.cfg
+netlab up
+sleep 20s
 #netlab validate
 

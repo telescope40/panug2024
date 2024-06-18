@@ -29,11 +29,6 @@ jobs:
         run: |
           cd ${{ github.workspace }}
           bash ./setup.sh
-      - name: netlab up
-        run: |
-          cd ${{ github.workspace }}/netlab
-          export ANSIBLE_CONFIG=netlab/ansible.cfg
-          netlab up
       - name: netlab testing
         run: |
           cd ${{ github.workspace }}/netlab
