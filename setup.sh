@@ -8,15 +8,15 @@ apt remove moby-tini -y
 apt-get install pip -y
 pip install -r requirements.txt
 
-mkdir -p /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/isis
-mkdir -p /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/ospf
-mkdir -p /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/bgp
-mkdir -p /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/route
+mkdir -p /home/runner/work/panug2024/panug2024/netlab/validate/isis
+mkdir -p /home/runner/work/panug2024/panug2024/netlab/validate/ospf
+mkdir -p /home/runner/work/panug2024/panug2024/netlab/validate/bgp
+mkdir -p /home/runner/work/panug2024/panug2024/netlab/validate/route
 
-cp netlab/validate/isis/frr.py /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/isis/.
-cp netlab/validate/ospf/frr.py /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/ospf/.
-cp netlab/validate/bgp/frr.py /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/bgp/.
-cp netlab/validate/route/frr.py /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/route/.
+cp netlab/validate/isis/frr.py /home/runner/work/panug2024/panug2024/netlab/validate/isis/.
+cp netlab/validate/ospf/frr.py /home/runner/work/panug2024/panug2024/netlab/validate/ospf/.
+cp netlab/validate/bgp/frr.py /home/runner/work/panug2024/panug2024/netlab/validate/bgp/.
+cp netlab/validate/route/frr.py /home/runner/work/panug2024/panug2024/netlab/validate/route/.
 
 #python3.9 -m venv panug
 #source venv/bin/activate
