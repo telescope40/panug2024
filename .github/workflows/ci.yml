@@ -33,6 +33,32 @@ jobs:
         run: |
           cd ${{ github.workspace }}
           cd netlab
+          netlab show defaults paths.validate --evaluate-paths
           netlab validate
+      - name: netlab collect configuration
+        run: |
+          cd ${{ github.workspace }}
+          cd netlab
+          netlab collect
 
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: config-artifacts
+          path: netlab/config
+
+      - name: Configure Git
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+
+      - name: Get current date and time
+        id: date-time
+        run: echo "CURRENT_DATETIME=$(date +'%Y-%m-%d-%H-%M-%S')" >> $GITHUB_ENV
+
+      - name: Create New Branch and Push
+        run: |
+          git add -f ${{ github.workspace }}/netlab/config/.
+          git commit -m "Backup Config from Runner $CURRENT_DATETIME"
+          git push
 
