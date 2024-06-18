@@ -32,7 +32,7 @@ jobs:
       - name: netlab up
         run: |
           cd ${{ github.workspace }}/netlab
-          export ANSIBLE_CONFIG=ansible.cfg
+          export ANSIBLE_CONFIG=netlab/ansible.cfg
           netlab up
       - name: netlab testing
         run: |
@@ -59,9 +59,11 @@ jobs:
         id: date-time
         run: echo "CURRENT_DATETIME=$(date +'%Y-%m-%d-%H-%M-%S')" >> $GITHUB_ENV
 
-      - name: Create New Branch and Push
+      - name: Add Device Configurations
         run: |
           git add -f ${{ github.workspace }}/netlab/config/.
           git commit -m "Config from Runner $CURRENT_DATETIME"
+          git branch runner_config
+          git checkout runner_config
           git push
 

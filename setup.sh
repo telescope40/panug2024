@@ -29,6 +29,3 @@ netlab install -y ubuntu ansible containerlab
 #sleep 20s
 #netlab validate
 
-
-
-#git remote add netlab git@github.com:ipspace/netlab.git
