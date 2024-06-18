@@ -3,7 +3,7 @@
 # Import FRRouting OSPF and BGP checks and Linux ping/route checks
 #
 from box import Box
-from ospf.frr import *
-from isis.frr import *
-from bgp.frr import *
+from validate.ospf.frr import *
+from validate.isis.frr import *
+from validate.bgp.frr import *
 from netsim.validate.linux import *

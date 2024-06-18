@@ -76,18 +76,18 @@ validate:
     wait: 45
 
    ping1:
-    description: Server1 Ping to H3
+    description: Server1 Ping to remote_host1
     nodes: [ server1 ]
     devices: [ linux ]
-    exec: ping -c 5 -W 1 -A h3
+    exec: ping -c 5 -W 1 -A remote_host1
     valid: |
       "64 bytes" in stdout
 
    ping2:
-    description: Server2 Ping to H4
+    description: Server2 Ping to remote_host2
     nodes: [ server2 ]
     devices: [ linux ]
-    exec: ping -c 5 -W 1 -A h4
+    exec: ping -c 5 -W 1 -A remote_host2
     valid: |
       "64 bytes" in stdout
 
