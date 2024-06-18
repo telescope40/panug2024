@@ -8,10 +8,11 @@ apt remove moby-tini -y
 apt-get install pip -y
 pip install -r requirements.txt
 #Add Test Directories and Files
-mkdir -p /usr/local/python/3.9.19/lib/python3.9/site-packages/netsim/validate/isis/
-mkdir -p /usr/local/python/3.9.19/lib/python3.9/site-packages/netsim/validate/ospf/
-mkdir -p /usr/local/python/3.9.19/lib/python3.9/site-packages/netsim/validate/bgp/
-mkdir -p /usr/local/python/3.9.19/lib/python3.9/site-packages/netsim/validate/route/
+mkdir -p /usr/local/python/3.9.19/lib/python3.9/site-packages/netsim/validate/isis
+mkdir -p /usr/local/python/3.9.19/lib/python3.9/site-packages/netsim/validate/ospf
+mkdir -p /usr/local/python/3.9.19/lib/python3.9/site-packages/netsim/validate/bgp
+mkdir -p /usr/local/python/3.9.19/lib/python3.9/site-packages/netsim/validate/route
+
 cp validation/isis/frr.py /usr/local/python/3.9.19/lib/python3.9/site-packages/netsim/validate/isis/.
 cp validation/ospf/frr.py /usr/local/python/3.9.19/lib/python3.9/site-packages/netsim/validate/ospf/.
 cp validation/bgp/frr.py /usr/local/python/3.9.19/lib/python3.9/site-packages/netsim/validate/bgp/.

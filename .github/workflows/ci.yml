@@ -29,5 +29,10 @@ jobs:
         run: |
           cd ${{ github.workspace }}
           bash ./setup.sh
+      - name: netlab testing
+        run: |
+          cd ${{ github.workspace }}
+          cd netlab
+          netlab validate
 
 

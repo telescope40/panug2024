@@ -7,10 +7,12 @@ apt-get install containerd -y
 apt remove moby-tini -y
 apt-get install pip -y
 pip install -r requirements.txt
-mkdir -p /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/isis/
-mkdir -p /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/ospf/
-mkdir -p /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/bgp/
-mkdir -p/opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/route/
+
+mkdir -p /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/isis
+mkdir -p /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/ospf
+mkdir -p /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/bgp
+mkdir -p/opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/route
+
 cp validation/isis/frr.py /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/isis/.
 cp validation/ospf/frr.py /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/ospf/.
 cp validation/bgp/frr.py /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/bgp/.
