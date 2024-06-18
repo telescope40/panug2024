@@ -8,7 +8,7 @@ module: [ bgp,ospf]
 nodes:
   r1:
     bgp.as: 65001
-    bgp.originate: [ 172.20.0.0/24 ]
+    bgp.originate: [ 172.20.0.0/24, 216.130.168.0/24 ]
     bgp.advertise_loopback: True
     config: ['device_config/r1.j2']
     id: 1
@@ -16,14 +16,14 @@ nodes:
       ipv4: 10.0.0.1/32
   r2:
     bgp.as: 65001
-    bgp.originate: [ 172.20.0.0/24 ]
+    bgp.originate: [ 172.20.0.0/24, 216.130.168.0/24 ]
     bgp.advertise_loopback: True
     config: ['device_config/r2.j2']
     id: 2
     loopback:
        ipv4: 10.0.0.2/32
   isp1:
-    bgp.originate: [ 0.0.0.0/0 ]
+    bgp.originate: [ 0.0.0.0/0  ]
     bgp.as: 64512
 
   isp2:
