@@ -48,10 +48,14 @@ jobs:
 
       - name: Add Device Configurations
         run: |
+          cd ${{ github.workspace }}
+          echo "/*" >> .gitignore
+          echo "/*/" >> .gitignore
+          echo "!netlab/config/" >> .gitignore
           git add -f ${{ github.workspace }}/netlab/config/.
           git commit -m "Config from Runner $CURRENT_DATETIME"
-          git branch runner_config
-          git checkout runner_config
+          git branch runner_config_$CURRENT_DATETIME
+          git checkout runner_config_$CURRENT_DATETIME
           git push --set-upstream origin runner_config
           git push
 
