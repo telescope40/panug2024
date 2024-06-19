@@ -25,16 +25,37 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.9'
-      - name: install packages
-        run: |
-          cd ${{ github.workspace }}
-          chmod +x setup.sh
-          ./setup.sh
-          make install
 
-      - name: Run Netlab
+      - name: Run setup.sh , netlab up,validate,collect
         run: |
           cd ${{ github.workspace }}
-          chmod +x codespaces.sh
-          ./codespaces.sh
+          bash ./setup.sh
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: config-artifacts
+          path: netlab/config
+
+      - name: Configure Git
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+
+      - name: Get current date and time
+        id: date-time
+        run: echo "CURRENT_DATETIME=$(date +'%Y-%m-%d-%H-%M-%S')" >> $GITHUB_ENV
+
+      - name: Add Device Configurations
+        run: |
+          cd ${{ github.workspace }}
+          echo "/*" >> .gitignore
+          echo "/*/" >> .gitignore
+          echo "!netlab/config/" >> .gitignore
+          git add -f ${{ github.workspace }}/netlab/config/.
+          git commit -m "Config from Runner $CURRENT_DATETIME"
+          git branch runner_config_$CURRENT_DATETIME
+          git checkout runner_config_$CURRENT_DATETIME
+          git push --set-upstream origin runner_config_$CURRENT_DATETIME
+          git push origin runner_config_$CURRENT_DATETIME
 

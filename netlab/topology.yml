@@ -3,21 +3,22 @@ defaults.device: frr
 provider: clab
 defaults.providers.clab.bridge_type: ovs-bridge
 
-module: [ bgp,ospf,bfd ]
+module: [ bgp,ospf]
+
 
 nodes:
   r1:
     bgp.as: 65001
-    bgp.originate: [ 172.20.0.0/24 ]
     bgp.advertise_loopback: True
+    bgp.originate: [ 5.0.0.0/24 ]
     config: ['device_config/r1.j2']
     id: 1
     loopback:
       ipv4: 10.0.0.1/32
   r2:
     bgp.as: 65001
-    bgp.originate: [ 172.20.0.0/24 ]
     bgp.advertise_loopback: True
+    bgp.originate: [ 5.0.0.0/24 ]
     config: ['device_config/r2.j2']
     id: 2
     loopback:
@@ -52,7 +53,7 @@ links:
   r2:
   ospf.area: 0.0.0.0
   ospf.bfd: true
-- r1-r2
+
 - r1:
   isp1:
   pool: isp1
@@ -77,18 +78,18 @@ validate:
     wait: 45
 
    ping1:
-    description: Server1 Ping to H3
+    description: Server1 Ping to remote_host1
     nodes: [ server1 ]
     devices: [ linux ]
-    exec: ping -c 5 -W 1 -A h3
+    exec: ping -c 5 -W 1 -A remote_host1
     valid: |
       "64 bytes" in stdout
 
    ping2:
-    description: Server2 Ping to H4
+    description: Server2 Ping to remote_host2
     nodes: [ server2 ]
     devices: [ linux ]
-    exec: ping -c 5 -W 1 -A h4
+    exec: ping -c 5 -W 1 -A remote_host2
     valid: |
       "64 bytes" in stdout
 
@@ -96,12 +97,33 @@ validate:
   adj:
     description: Check for OSPF adjacencies
     wait: 20
-    nodes: [ r1, r2 ]
+    nodes: [ r2 ]
     plugin: ospf_neighbor(nodes.r1.ospf.router_id)
+
+
+  neighbors:
+    description: Check whether r1 & r2 have bgp neigborship
+    wait: 20
+    wait_msg: Wait for BGP prefix origination and BGP convergence
+    nodes: [ r1 ]
+    plugin: bgp_neighbor(node.bgp.neighbors,'r2')
+
+
+  pfx_r1_isp1:
+    description: Check if Private IP r1 is adv to ISP1
+    wait: 5
+    nodes: [ isp1 ]
+    plugin: bgp_prefix(nodes.r1.loopback.ipv4)
+
+  pfx_r2_isp2:
+    description: Check if Private IP r2 is adv to ISP2
+    wait: 5
+    nodes: [ isp2 ]
+    plugin: bgp_prefix(nodes.r2.loopback.ipv4)
 
   prefix:
     description: Check whether r1 & r2 advertises the beacon prefix
     wait: 20
     wait_msg: Wait for BGP prefix origination and BGP convergence
     nodes: [ isp1, isp2]
-    plugin: bgp_prefix('172.20.0.0/24')
+    plugin: bgp_prefix('5.0.0.0/24')

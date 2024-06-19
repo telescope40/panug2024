@@ -1,28 +1,33 @@
 #!/usr/bin/env bash
-# Phase 1 Install Tools , Create Directories , Set Up Virtual Environment
-# pip is used to install all my python libraries
-sudo apt-get update && sudo apt-get install -y python3-pip
-# Get current working directory
-CWD=$(pwd)
+# Install Netlab and Run
+echo "deb [trusted=yes] https://apt.fury.io/netdevops/ /" | \
+tee -a /etc/apt/sources.list.d/netdevops.list -y
+apt install containerlab -y
+apt-get install containerd -y
+apt remove moby-tini -y
+apt-get install pip -y
+pip install -r requirements.txt
+
+mkdir -p /home/runner/work/panug2024/panug2024/netlab/validate/isis
+mkdir -p /home/runner/work/panug2024/panug2024/netlab/validate/ospf
+mkdir -p /home/runner/work/panug2024/panug2024/netlab/validate/bgp
+mkdir -p /home/runner/work/panug2024/panug2024/netlab/validate/route
+
+cp netlab/validate/isis/frr.py /home/runner/work/panug2024/panug2024/netlab/validate/isis/.
+cp netlab/validate/ospf/frr.py /home/runner/work/panug2024/panug2024/netlab/validate/ospf/.
+cp netlab/validate/bgp/frr.py /home/runner/work/panug2024/panug2024/netlab/validate/bgp/.
+cp netlab/validate/route/frr.py /home/runner/work/panug2024/panug2024/netlab/validate/route/.
+
+#python3.9 -m venv panug
+#source venv/bin/activate
+netlab install -y ubuntu ansible containerlab
 #Create the Python Virtual Environment
 # Create Directories for the project
-#Copy Test Directories over
-mkdir  /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/bgp/
-mkdir  /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/ospf/
-mkdir  /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/isis/
-mkdir  /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/linux/
-#      /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/frr.py
-cp netlab/project1/tests/frr.py /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/frr.py
-cp netlab/project1/tests/linux/frr.py /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/linux/frr.py
-cp netlab/project1/tests/bgp/frr.py /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/bgp/frr.py
-cp netlab/project1/tests/ospf/frr.py /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/ospf/frr.py
-cp netlab/project1/tests/isis/frr.py /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/netsim/validate/isis/frr.py
-#mkdir -p netlab netlab/project1 .devcontainer
-# Phase 2 Install Netlab
-echo "deb [trusted=yes] https://apt.fury.io/netdevops/ /" | \
-sudo tee -a /etc/apt/sources.list.d/netdevops.list -y
-sudo apt update && sudo apt install containerlab -y
-sudo apt-get install containerd -y
-sudo apt remove moby-tini -y
-
+cd netlab
+export ANSIBLE_CONFIG=ansible.cfg
+netlab up
+sleep 20s
+netlab validate
+sleep 20s
+netlab collect
 
