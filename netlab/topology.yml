@@ -113,13 +113,18 @@ validate:
     description: Check if Private IP r1 is adv to ISP1
     wait: 5
     nodes: [ isp1 ]
-    plugin: bgp_prefix(nodes.r1.loopback.ipv4)
+    pass: r1 is correctly NOT advertising 10.0.0.1
+    fail: r1 is advertising 10.0.0.1 , breaking RFC 7454
+    plugin: bgp_prefix(nodes.r1.loopback.ipv4,state='missing')
+
 
   pfx_r2_isp2:
     description: Check if Private IP r2 is adv to ISP2
     wait: 5
     nodes: [ isp2 ]
-    plugin: bgp_prefix(nodes.r2.loopback.ipv4)
+    pass: r2 is correctly NOT advertising 10.0.0.2
+    fail: r2 is advertising 10.0.0.2 , breaking RFC 7454
+    plugin: bgp_prefix(nodes.r2.loopback.ipv4,state='missing')
 
   prefix:
     description: Check whether r1 & r2 advertises the beacon prefix
