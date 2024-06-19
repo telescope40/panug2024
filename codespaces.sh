@@ -5,3 +5,4 @@ export ANSIBLE_CONFIG=ansible.cfg
 netlab up
 sleep 20s
 netlab validate
+

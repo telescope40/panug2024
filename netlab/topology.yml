@@ -126,7 +126,6 @@ validate:
     fail: r2 is advertising 10.0.0.2 , breaking RFC 7454
     plugin: bgp_prefix(nodes.r2.loopback.ipv4,state='missing')
 
-
   prefix:
     description: Check whether r1 & r2 advertises the beacon prefix
     wait: 20
