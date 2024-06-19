@@ -1,5 +1,7 @@
 # PANUG 
-Project is used to demonstrate how to use NetDevOps for everyday Network Engineers
+Project is used to demonstrate how to use NetDevOps for everyday Network Engineers. 
+This is a demo where BGP Network is design is deployed into a lab environment netlab , validates criteria and performs this 
+in a CI function of a Github runner and offer the use of Codespaces to deploy a lab and troubleshoot any issues. 
 
 [![CI](https://github.com/telescope40/panug2024/actions/workflows/ci.yml/badge.svg)](https://github.com/telescope40/panug2024/actions/workflows/ci.yml)
 
@@ -12,11 +14,9 @@ that will build out environment with the tools we need.
         - `setup.sh`
         - `requirements.txt`
         - `Dockerfile`
-        - `Makefile`
     - setup.sh does the updating , installation of VM OS level packages 
     - requirements.txt holds all the python packages we will need 
     - Dockerfile is used to create our codespace Virtual Machine
-    - Makefile is used to lint , check our code 
     ```bash ./setup.sh```
 
 ### Build out lab
@@ -31,8 +31,9 @@ Now we want to track any development changes on the remote so when we do develop
     - Describe the network in code 
     - `topology.yaml`
 
-### Git 
-    - Tool that helps development state 
+### Github CodeSpace
+    - Our free VM in Github where we can directly test the network topology and commit to the repo. 
+    
 
 ### Github Actions 
     - Our CI/CD "pipeline" is via Github Actions 
@@ -44,5 +45,7 @@ Now we want to track any development changes on the remote so when we do develop
     in the event of failure of CI , it can also be used for a remote LAB environment to experiment with our builds. 
 
 ### Python 
+    - Python is the scripting langauage that is used to perform the netlab validation tests 
+
 
 

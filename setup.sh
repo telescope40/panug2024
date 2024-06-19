@@ -27,5 +27,7 @@ cd netlab
 export ANSIBLE_CONFIG=ansible.cfg
 netlab up
 sleep 20s
-#netlab validate
+netlab validate
+sleep 20s
+netlab collect
 

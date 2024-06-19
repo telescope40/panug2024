@@ -25,20 +25,11 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.9'
-      - name: install packages
+
+      - name: Run setup.sh , netlab up,validate,collect
         run: |
           cd ${{ github.workspace }}
           bash ./setup.sh
-      - name: netlab testing
-        run: |
-          cd ${{ github.workspace }}/netlab
-          netlab show defaults paths.validate --evaluate-paths
-          netlab validate
-          cat /home/runner/work/panug2024/panug2024/netlab/validate/frr.py
-      - name: netlab collect configuration
-        run: |
-          cd ${{ github.workspace }}/netlab
-          netlab collect
 
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
