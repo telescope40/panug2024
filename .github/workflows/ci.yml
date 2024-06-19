@@ -56,6 +56,6 @@ jobs:
           git commit -m "Config from Runner $CURRENT_DATETIME"
           git branch runner_config_$CURRENT_DATETIME
           git checkout runner_config_$CURRENT_DATETIME
-          git push --set-upstream origin runner_config
-          git push
+          git push --set-upstream origin runner_config_$CURRENT_DATETIME
+          git push origin runner_config_$CURRENT_DATETIME
 
