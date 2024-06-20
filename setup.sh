@@ -26,9 +26,7 @@ netlab install -y ubuntu ansible containerlab
 # Create Directories for the project
 cd netlab
 #Set Ansible Config
-export PATH="/workspaces/panug2024/netlab:$PATH"
-
-export ANSIBLE_CONFIG=/home/runner/work/panug2024/panug2024/ansible.cfg
+export ANSIBLE_CONFIG=ansible.cfg
 netlab up
 sleep 20s
 netlab validate

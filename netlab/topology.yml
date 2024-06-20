@@ -126,6 +126,28 @@ validate:
     fail: r2 is advertising 10.0.0.2 , breaking RFC 7454
     plugin: bgp_prefix(nodes.r2.loopback.ipv4,state='missing')
 
+  as_path_r1:
+    description: Check the AS path of the prefix advertised by ISP1 to r1
+    fail: The AS path is not what we expected
+    nodes: [ r1 ]
+    plugin: >-
+      bgp_prefix(
+      nodes.isp1.bgp.originate[0],
+      peer=nodes.r1.bgp.router_id,
+      aspath='64512')
+
+  as_path_r2:
+    description: Check the AS path of the prefix advertised by ISP2 to r2
+    fail: The AS path is not what we expected
+    nodes: [ r2 ]
+    plugin: >-
+      bgp_prefix(
+      nodes.isp2.bgp.originate[0],
+      peer=nodes.r2.bgp.router_id,
+      aspath='64513')
+
+
+
   prefix:
     description: Check whether r1 & r2 advertises the beacon prefix
     wait: 20
