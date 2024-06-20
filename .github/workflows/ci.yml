@@ -21,13 +21,10 @@ jobs:
           node-version: '14'
       - name: checkout-panug
         uses: actions/checkout@v2
-
-      - name: Run setup.sh , netlab up,validate,collect
         run: |
-          cd ${{ github.workspace }}
-          export PATH="/home/runner/work/panug2024/panug2024:$PATH"
           export ANSIBLE_CONFIG=ansible.cfg
           bash ./setup.sh
+        working-directory: /home/runner/work/panug2024
 
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
