@@ -14,9 +14,6 @@ jobs:
   build:
     name: Run Ansible on Ubuntu
     runs-on: ubuntu-22.04
-    defaults:
-      run:
-        working-directory: /home/runner/work/panug2024
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -25,8 +22,9 @@ jobs:
 
       - name: Run setup.sh , netlab up,validate,collect
         run: |
+          cd netlab
           export ANSIBLE_CONFIG=ansible.cfg
-           bash ./setup.sh
+          bash ../setup.sh
 
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
