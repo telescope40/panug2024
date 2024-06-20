@@ -1,4 +1,5 @@
 virtualenv
+netaddr
 networklab
 pylint
 black

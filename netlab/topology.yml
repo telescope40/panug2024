@@ -146,11 +146,31 @@ validate:
       peer=nodes.r2.bgp.router_id,
       aspath='64513')
 
-
-
   prefix:
     description: Check whether r1 & r2 advertises the beacon prefix
     wait: 20
     wait_msg: Wait for BGP prefix origination and BGP convergence
     nodes: [ isp1, isp2]
     plugin: bgp_prefix('5.0.0.0/24')
+
+  maxprefixr1:
+    description: Check Number of Prefixes r1 Recieved
+    nodes: [r1]
+    fail: Max Prefix of 5 Not Honored
+    pass: Max Prefix is honored
+    show:
+      frr: ip bgp neighbors 169.254.100.1 prefix-counts json
+    valid:
+      frr: >
+        ribTableWalkCounters.Useable < 5
+
+  maxprefixr2:
+    description: Check Number of Prefixes r2 Recieved
+    nodes: [r2]
+    fail: Max Prefix of 5 Not Honored
+    pass: Max Prefix is honored
+    show:
+      frr: ip bgp neighbors 169.254.200.1 prefix-counts json
+    valid:
+      frr: >
+        ribTableWalkCounters.Useable < 5
