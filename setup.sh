@@ -8,15 +8,15 @@ apt remove moby-tini -y
 apt-get install pip -y
 pip install -r requirements.txt
 
-mkdir -p /home/runner/work/panug2024/panug2024/netlab/validate/isis
-mkdir -p /home/runner/work/panug2024/panug2024/netlab/validate/ospf
-mkdir -p /home/runner/work/panug2024/panug2024/netlab/validate/bgp
-mkdir -p /home/runner/work/panug2024/panug2024/netlab/validate/route
-
-cp netlab/validate/isis/frr.py /home/runner/work/panug2024/panug2024/netlab/validate/isis/.
-cp netlab/validate/ospf/frr.py /home/runner/work/panug2024/panug2024/netlab/validate/ospf/.
-cp netlab/validate/bgp/frr.py /home/runner/work/panug2024/panug2024/netlab/validate/bgp/.
-cp netlab/validate/route/frr.py /home/runner/work/panug2024/panug2024/netlab/validate/route/.
+#mkdir -p /home/runner/work/panug2024/panug2024/netlab/validate/isis
+#mkdir -p /home/runner/work/panug2024/panug2024/netlab/validate/ospf
+#mkdir -p /home/runner/work/panug2024/panug2024/netlab/validate/bgp
+#mkdir -p /home/runner/work/panug2024/panug2024/netlab/validate/route
+#
+#cp netlab/validate/isis/frr.py /home/runner/work/panug2024/panug2024/netlab/validate/isis/.
+#cp netlab/validate/ospf/frr.py /home/runner/work/panug2024/panug2024/netlab/validate/ospf/.
+#cp netlab/validate/bgp/frr.py /home/runner/work/panug2024/panug2024/netlab/validate/bgp/.
+#cp netlab/validate/route/frr.py /home/runner/work/panug2024/panug2024/netlab/validate/route/.
 
 #python3.9 -m venv panug
 #source venv/bin/activate
@@ -24,7 +24,10 @@ netlab install -y ubuntu ansible containerlab
 #Create the Python Virtual Environment
 # Create Directories for the project
 cd netlab
-export ANSIBLE_CONFIG=ansible.cfg
+#Set Ansible Config
+export PATH="/workspaces/panug2024/netlab:$PATH"
+export PATH="/workspaces/panug2024/panug2024/netlab:$PATH"
+export ANSIBLE_CONFIG=/workspaces/panug2024/netlab/ansible.cfg
 netlab up
 sleep 20s
 netlab validate
