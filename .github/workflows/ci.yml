@@ -24,8 +24,9 @@ jobs:
 
       - name: Run setup.sh , netlab up,validate,collect
         run: |
-          #cd ${{ github.workspace }}
-          echo $PATH
+          cd ${{ github.workspace }}
+          export PATH="/home/runner/work/panug2024/panug2024:$PATH"
+          export ANSIBLE_CONFIG=ansible.cfg
           bash ./setup.sh
 
       - name: Upload Build Artifact
@@ -48,7 +49,7 @@ jobs:
           cd ${{ github.workspace }}
           echo "/*" >> .gitignore
           echo "/*/" >> .gitignore
-          echo "!netlab/config/" >> .gitignore
+          echo \!"/netlab/config/" >> .gitignore
           git add -f ${{ github.workspace }}/netlab/config/.
           git commit -m "Config from Runner $CURRENT_DATETIME"
           git branch runner_config_$CURRENT_DATETIME
