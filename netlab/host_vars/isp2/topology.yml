@@ -1,0 +1,98 @@
+# Ansible inventory created from ['/workspaces/panug2024/netlab/topology.yml', 'package:topology-defaults.yml']
+#
+
+af:
+  ipv4: true
+bgp:
+  advertise_loopback: true
+  as: 64513
+  community:
+    ebgp:
+    - standard
+    - large
+    ibgp:
+    - standard
+    - large
+    - extended
+    ibgp_localas:
+    - standard
+    - large
+    - extended
+  ipv4: true
+  neighbors:
+  - activate:
+      ipv4: true
+    as: 65001
+    ifindex: 1
+    ipv4: 169.254.200.2
+    name: r2
+    type: ebgp
+  next_hop_self: true
+  originate:
+  - 0.0.0.0/0
+  router_id: 10.0.0.4
+box: quay.io/frrouting/frr:9.1.0
+clab:
+  binds:
+  - clab_files/isp2/daemons:/etc/frr/daemons
+  - clab_files/isp2/hosts:/etc/hosts
+  config_templates:
+  - daemons:/etc/frr/daemons
+  - hosts:/etc/hosts
+  kind: linux
+hostname: clab-netlab-isp2
+interfaces:
+- ifindex: 1
+  ifname: eth1
+  ipv4: 169.254.200.1/30
+  linkindex: 3
+  mtu: 1500
+  name: isp2 -> r2
+  neighbors:
+  - ifname: eth2
+    ipv4: 169.254.200.2/30
+    node: r2
+  pool: isp2
+  role: external
+  type: p2p
+- bgp:
+    advertise: true
+  bridge: netlab_7
+  ifindex: 2
+  ifname: eth2
+  ipv4: 172.16.3.4/24
+  linkindex: 7
+  mtu: 1500
+  name: isp2 -> remote_host2
+  neighbors:
+  - ifname: eth1
+    ipv4: 172.16.3.8/24
+    node: remote_host2
+  ospf:
+    area: 0.0.0.0
+    network_type: point-to-point
+    passive: true
+  role: stub
+  type: lan
+loopback:
+  ifindex: 0
+  ifname: lo
+  ipv4: 10.0.0.4/32
+  neighbors: []
+  ospf:
+    area: 0.0.0.0
+  type: loopback
+  virtual_interface: true
+mgmt:
+  ifname: eth0
+  ipv4: 192.168.121.104
+  mac: 08:4f:a9:00:00:04
+module:
+- bgp
+- ospf
+mtu: 1500
+ospf:
+  af:
+    ipv4: true
+  area: 0.0.0.0
+  router_id: 10.0.0.4

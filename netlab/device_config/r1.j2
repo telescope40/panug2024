@@ -1,12 +1,17 @@
 frr defaults traditional
 !
-ip route 10.0.0.2 255.255.255.255 eth3
+ip route 10.0.0.2 255.255.255.255 eth1
+ip route  172.20.0.0 255.255.255.0 null0
+ip route  5.0.0.0 255.255.255.0 null0
+!
+
+bgp as-path access-list isp1 seq 5 permit ^64512
 !
 ip prefix-list MARTIAN description Martian route filter
 ip prefix-list MARTIAN seq 15 permit 10.0.0.0/8 le 32
 ip prefix-list MARTIAN seq 20 permit 127.0.0.0/8 le 32
 ip prefix-list MARTIAN seq 25 permit 169.254.0.0/16 le 32
-ip prefix-list MARTIAN seq 30 permit 172.16.0.0/12 le 32
+
 ip prefix-list MARTIAN seq 35 permit 192.0.2.0/24 le 32
 ip prefix-list MARTIAN seq 40 permit 192.168.0.0/16 le 32
 ip prefix-list MARTIAN seq 45 permit 198.18.0.0/15 le 32
@@ -21,6 +26,7 @@ route-map ISP-IN deny 20
  match ip address prefix-list BLACKHOLE
 
 route-map ISP-IN permit 30
+ match as-path isp1
  set metric 0
  set local-preference 120
 !
@@ -46,6 +52,7 @@ router bgp {{ bgp.as }}
 {% if bgp.as != n.as %}
   neighbor {{ n[af] }} route-map ISP-IN in
   neighbor {{ n[af] }} route-map ISP-OUT out
+  neighbor {{ n[af] }} maximum-prefix 5 5 warning-only
 {% endif %}
 {% endif %}
 {% endfor %}
