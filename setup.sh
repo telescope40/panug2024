@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+export PATH="/home/runner/work/panug2024/panug2024:$PATH"
 # Install Netlab and Run
 echo "deb [trusted=yes] https://apt.fury.io/netdevops/ /" | \
 tee -a /etc/apt/sources.list.d/netdevops.list -y
@@ -26,8 +27,8 @@ netlab install -y ubuntu ansible containerlab
 cd netlab
 #Set Ansible Config
 export PATH="/workspaces/panug2024/netlab:$PATH"
-export PATH="/workspaces/panug2024/panug2024/netlab:$PATH"
-export ANSIBLE_CONFIG=/workspaces/panug2024/netlab/ansible.cfg
+
+export ANSIBLE_CONFIG=/home/runner/work/panug2024/panug2024/ansible.cfg
 netlab up
 sleep 20s
 netlab validate

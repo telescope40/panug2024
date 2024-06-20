@@ -29,7 +29,8 @@ jobs:
 
       - name: Run setup.sh , netlab up,validate,collect
         run: |
-          cd ${{ github.workspace }}
+          #cd ${{ github.workspace }}
+          echo $PATH
           bash ./setup.sh
 
       - name: Upload Build Artifact
