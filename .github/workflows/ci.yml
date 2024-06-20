@@ -29,6 +29,7 @@ jobs:
         run: |
           cd ${{ github.workspace }}/netlab
           export ANSIBLE_CONFIG=ansible.cfg
+          echo "ANSIBLE_PYTHON_INTERPRETER=$(which python)" >> $GITHUB_ENV
           cd ${{ github.workspace }}
           bash setup.sh
 
